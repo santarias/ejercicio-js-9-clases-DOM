@@ -21,6 +21,10 @@ class Personaje {
     return `${this.nombre} dice:`;
   }
 
+  nombre() {
+    return `${this.nombre}`
+  }
+
 }
 
 class Rey extends Personaje {
@@ -64,9 +68,10 @@ class Luchador extends Personaje {
 class Escudero extends Personaje {
   personajeQueSirve;
   pelotismo;
-  constructor(nombre, familia, edad, personajeServir) {
+  constructor(nombre, familia, edad, personajeServir, pelotismo) {
     super(nombre, familia, edad);
     this.verificarPersonajeServir(personajeServir);
+    this.veriricarPelotismo(pelotismo);
   }
   set personajeAServir(personajeDefinir) {
     this.verificarPersonajeServir(personajeDefinir);
@@ -119,7 +124,7 @@ const Joffrey = new Rey("Joffrey", "Baratheon", 25, 3);
 const Jamie = new Luchador("Jamie", "Lannister", 37, "Espada", 7);
 const Daenerys = new Luchador("Daenerys", "Targaryen", 27, "Dragon", 10);
 const Tyrion = new Asesor("Tyrion", "Lannister", 34, Daenerys);
-const Bronn = new Escudero("Bronn", "Ninguna", 36, Jamie);
+const Bronn = new Escudero("Bronn", "", 36, Jamie, 6);
 
 const listaPersonajes = [Joffrey, Jamie, Daenerys, Tyrion, Bronn];
 
@@ -157,3 +162,48 @@ function resumenListaPersonajes(listaPersonajes) {
 
 resumenL = resumenListaPersonajes(listaPersonajes);
 console.log(resumenL);
+
+
+
+const recorrePersonajes = (listaDePersonajes) => {
+  for (const personaje of listaDePersonajes) {
+    const personajeDummy = document.querySelector(".personaje-dummy").cloneNode(true);
+    const iconoEstado = document.createElement("i");
+    iconoEstado.classList.add("fas");
+    personajeDummy.classList.remove("personaje-dummy");
+    personajeDummy.querySelector(".nombre").textContent = `${personaje.nombre} ${personaje.familia}`;
+    personajeDummy.querySelector(".estado").appendChild(iconoEstado);
+    personajeDummy.querySelector(".edad").textContent = `Edad: ${personaje.edad}`;
+    if (personaje.estado === "vivo") {
+      iconoEstado.classList.add("fa-thumbs-up");
+    } else {
+      iconoEstado.classList.add("fa-thumbs-down");
+    }
+    personajeDummy.querySelector(".estado").appendChild(iconoEstado);
+    const imgPersonaje = personajeDummy.querySelector("img");
+    imgPersonaje.src = `img/${personaje.nombre.toLowerCase()}.jpg`;
+    imgPersonaje.alt = `${personaje.nombre} ${personaje.familia}`;
+
+    if (personaje instanceof Rey) {
+      personajeDummy.querySelector(".anyos-reino").textContent =
+        `Años de reinado: ${personaje.anyosReinado}`;
+    }
+
+    if (personaje instanceof Luchador) {
+      personajeDummy.querySelector(".arma").textContent = `Arma: ${personaje.arma}`;
+      personajeDummy.querySelector(".destreza").textContent = `Destreza: ${personaje.destreza}`;
+    }
+
+    if (personaje instanceof Escudero) {
+      personajeDummy.querySelector(".peloteo").textContent = `Peloteo: ${personaje.pelotismo}`;
+      personajeDummy.querySelector(".sirve-a").textContent = `Sirve a: ${personaje.personajeQueSirve.nombre}`;
+    }
+    if (personaje instanceof Asesor) {
+      personajeDummy.querySelector(".asesora-a").textContent = `Asesora a: ${personaje.personajeAsesorado.nombre}`;
+    }
+
+    document.querySelector(".personajes").append(personajeDummy);
+  }
+}
+
+recorrePersonajes(listaPersonajes);
