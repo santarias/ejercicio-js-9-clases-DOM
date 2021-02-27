@@ -157,3 +157,11 @@ function resumenListaPersonajes(listaPersonajes) {
 
 resumenL = resumenListaPersonajes(listaPersonajes);
 console.log(resumenL);
+
+
+
+const recorrePersonajes = (listaDePersonajes) => {
+  for (const personaje of listaDePersonajes) {
+    const personajeDummy = document.querySelector(".personaje-dummy");
+  }
+}
