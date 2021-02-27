@@ -187,19 +187,25 @@ const recorrePersonajes = (listaDePersonajes) => {
     if (personaje instanceof Rey) {
       personajeDummy.querySelector(".anyos-reino").textContent =
         `Años de reinado: ${personaje.anyosReinado}`;
+      personajeDummy.querySelector(".emoji").textContent = `👑`;
     }
 
     if (personaje instanceof Luchador) {
       personajeDummy.querySelector(".arma").textContent = `Arma: ${personaje.arma}`;
       personajeDummy.querySelector(".destreza").textContent = `Destreza: ${personaje.destreza}`;
+      personajeDummy.querySelector(".emoji").textContent = `🗡`;
     }
 
     if (personaje instanceof Escudero) {
       personajeDummy.querySelector(".peloteo").textContent = `Peloteo: ${personaje.pelotismo}`;
-      personajeDummy.querySelector(".sirve-a").textContent = `Sirve a: ${personaje.personajeQueSirve.nombre}`;
+      personajeDummy.querySelector(".sirve-a").textContent =
+        `Sirve a: ${personaje.personajeQueSirve.nombre}`;
+      personajeDummy.querySelector(".emoji").textContent = `🛡`;
     }
     if (personaje instanceof Asesor) {
-      personajeDummy.querySelector(".asesora-a").textContent = `Asesora a: ${personaje.personajeAsesorado.nombre}`;
+      personajeDummy.querySelector(".asesora-a").textContent =
+        `Asesora a: ${personaje.personajeAsesorado.nombre}`;
+      personajeDummy.querySelector(".emoji").textContent = `🎓`;
     }
 
     document.querySelector(".personajes").append(personajeDummy);
