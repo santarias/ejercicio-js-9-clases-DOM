@@ -186,26 +186,40 @@ const recorrePersonajes = (listaDePersonajes) => {
       imgPersonaje.classList.add("personaje-muerto");
     }
     if (personaje instanceof Rey) {
-      personajeDummy.querySelector(".anyos-reino").textContent =
+      const liReino = document.createElement("li");
+      liReino.classList.add("anyos-reino");
+      liReino.textContent =
         `Años de reinado: ${personaje.anyosReinado}`;
+      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liReino);
       personajeDummy.querySelector(".emoji").textContent = `👑`;
     }
 
     if (personaje instanceof Luchador) {
-      personajeDummy.querySelector(".arma").textContent = `Arma: ${personaje.arma}`;
-      personajeDummy.querySelector(".destreza").textContent = `Destreza: ${personaje.destreza}`;
+      const liArma = document.createElement("li");
+      liArma.classList.add("arma");
+      liArma.textContent = `Arma: ${personaje.arma}`
+      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liArma);
+      const liDestreza = document.createElement("li");
+      liDestreza.classList.add("destreza");
+      liDestreza.textContent = `Destreza: ${personaje.destreza}`;
+      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liDestreza);
       personajeDummy.querySelector(".emoji").textContent = `🗡`;
     }
 
     if (personaje instanceof Escudero) {
-      personajeDummy.querySelector(".peloteo").textContent = `Peloteo: ${personaje.pelotismo}`;
-      personajeDummy.querySelector(".sirve-a").textContent =
-        `Sirve a: ${personaje.personajeQueSirve.nombre}`;
+      const liPeloteo = document.createElement("li");
+      liPeloteo.textContent = `Peloteo: ${personaje.pelotismo}`;
+      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liPeloteo);
+      const liSirveA = document.createElement("li");
+      liSirveA.textContent = `Sirve a: ${personaje.personajeQueSirve.nombre}`;
+      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liSirveA);
+
       personajeDummy.querySelector(".emoji").textContent = `🛡`;
     }
     if (personaje instanceof Asesor) {
-      personajeDummy.querySelector(".asesora-a").textContent =
-        `Asesora a: ${personaje.personajeAsesorado.nombre}`;
+      const liAsesoraA = document.createElement("li");
+      liAsesoraA.textContent = `Asesora a: ${personaje.personajeAsesorado.nombre}`;
+      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liAsesoraA);
       personajeDummy.querySelector(".emoji").textContent = `🎓`;
     }
 
