@@ -99,3 +99,8 @@ img.card-img-top {
   right: 5px;
   top: 5px;
 }
+
+.personaje-muerto {
+  transition: transform 0.5s;
+  transform: scaleY(-1);
+}
