@@ -163,5 +163,7 @@ console.log(resumenL);
 const recorrePersonajes = (listaDePersonajes) => {
   for (const personaje of listaDePersonajes) {
     const personajeDummy = document.querySelector(".personaje-dummy");
+    personajeDummy.classList.remove("personaje-dummy");
   }
 }
+
