@@ -1,0 +1,101 @@
+body {
+  background-color: #b9540c;
+  overflow: hidden;
+}
+.personajes {
+  flex-wrap: nowrap;
+  max-width: 100%;
+  min-height: 100vh;
+  align-items: center;
+}
+.personaje {
+  width: 20%;
+  flex-basis: auto;
+  flex-grow: 0;
+}
+.nombre {
+  height: 60px;
+}
+img.card-img-top {
+  object-fit: cover;
+  object-position: top;
+  height: 200px;
+}
+.personaje-card {
+    position: relative;
+    border: none;
+    background-color: #331c0e;
+    color: #fff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.personaje .personaje-overlay {
+  border-radius: .25rem;
+  position: absolute;
+  padding: 25px 15px;
+  top: -100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+.personaje:nth-child(even) .personaje-overlay {
+  top: 100%;
+}
+.personaje:hover .personaje-overlay {
+  opacity: 1;
+  pointer-events: all;
+  top: 0;
+}
+.personaje .acciones {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+.personaje .accion {
+  background-color: #67331E;
+  color: #fff;
+  width: 80%;
+}
+.personaje-dummy {
+  display: none;
+}
+.comunicaciones {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  right: 100vw;
+  left: -100vw;
+}
+.comunicaciones.on {
+  right: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+.comunicaciones img {
+  width: 70px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.emoji {
+  font-style: normal;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
