@@ -174,16 +174,17 @@ const recorrePersonajes = (listaDePersonajes) => {
     personajeDummy.querySelector(".nombre").textContent = `${personaje.nombre} ${personaje.familia}`;
     personajeDummy.querySelector(".estado").appendChild(iconoEstado);
     personajeDummy.querySelector(".edad").textContent = `Edad: ${personaje.edad}`;
-    if (personaje.estado === "vivo") {
-      iconoEstado.classList.add("fa-thumbs-up");
-    } else {
-      iconoEstado.classList.add("fa-thumbs-down");
-    }
     personajeDummy.querySelector(".estado").appendChild(iconoEstado);
     const imgPersonaje = personajeDummy.querySelector("img");
     imgPersonaje.src = `img/${personaje.nombre.toLowerCase()}.jpg`;
     imgPersonaje.alt = `${personaje.nombre} ${personaje.familia}`;
-
+    if (personaje.estado === "vivo") {
+      iconoEstado.classList.add("fa-thumbs-up");
+      imgPersonaje.classList.remove("personaje-muerto");
+    } else {
+      iconoEstado.classList.add("fa-thumbs-down");
+      imgPersonaje.classList.add("personaje-muerto");
+    }
     if (personaje instanceof Rey) {
       personajeDummy.querySelector(".anyos-reino").textContent =
         `Años de reinado: ${personaje.anyosReinado}`;
