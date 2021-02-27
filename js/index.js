@@ -167,63 +167,65 @@ console.log(resumenL);
 
 const recorrePersonajes = (listaDePersonajes) => {
   for (const personaje of listaDePersonajes) {
-    const personajeDummy = document.querySelector(".personaje-dummy").cloneNode(true);
-    const iconoEstado = document.createElement("i");
-    iconoEstado.classList.add("fas");
-    personajeDummy.classList.remove("personaje-dummy");
-    personajeDummy.querySelector(".nombre").textContent = `${personaje.nombre} ${personaje.familia}`;
-    personajeDummy.querySelector(".estado").appendChild(iconoEstado);
-    personajeDummy.querySelector(".edad").textContent = `Edad: ${personaje.edad}`;
-    personajeDummy.querySelector(".estado").appendChild(iconoEstado);
-    const imgPersonaje = personajeDummy.querySelector("img");
-    imgPersonaje.src = `img/${personaje.nombre.toLowerCase()}.jpg`;
-    imgPersonaje.alt = `${personaje.nombre} ${personaje.familia}`;
-    if (personaje.estado === "vivo") {
-      iconoEstado.classList.add("fa-thumbs-up");
-      imgPersonaje.classList.remove("personaje-muerto");
-    } else {
-      iconoEstado.classList.add("fa-thumbs-down");
-      imgPersonaje.classList.add("personaje-muerto");
-    }
-    if (personaje instanceof Rey) {
-      const liReino = document.createElement("li");
-      liReino.classList.add("anyos-reino");
-      liReino.textContent =
-        `Años de reinado: ${personaje.anyosReinado}`;
-      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liReino);
-      personajeDummy.querySelector(".emoji").textContent = `👑`;
-    }
+    setTimeout(() => {
+      const personajeDummy = document.querySelector(".personaje-dummy").cloneNode(true);
+      const iconoEstado = document.createElement("i");
+      iconoEstado.classList.add("fas");
+      personajeDummy.classList.remove("personaje-dummy");
+      personajeDummy.querySelector(".nombre").textContent = `${personaje.nombre} ${personaje.familia}`;
+      personajeDummy.querySelector(".estado").appendChild(iconoEstado);
+      personajeDummy.querySelector(".edad").textContent = `Edad: ${personaje.edad}`;
+      personajeDummy.querySelector(".estado").appendChild(iconoEstado);
+      const imgPersonaje = personajeDummy.querySelector("img");
+      imgPersonaje.src = `img/${personaje.nombre.toLowerCase()}.jpg`;
+      imgPersonaje.alt = `${personaje.nombre} ${personaje.familia}`;
+      if (personaje.estado === "vivo") {
+        iconoEstado.classList.add("fa-thumbs-up");
+        imgPersonaje.classList.remove("personaje-muerto");
+      } else {
+        iconoEstado.classList.add("fa-thumbs-down");
+        imgPersonaje.classList.add("personaje-muerto");
+      }
+      if (personaje instanceof Rey) {
+        const liReino = document.createElement("li");
+        liReino.classList.add("anyos-reino");
+        liReino.textContent =
+          `Años de reinado: ${personaje.anyosReinado}`;
+        personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liReino);
+        personajeDummy.querySelector(".emoji").textContent = `👑`;
+      }
 
-    if (personaje instanceof Luchador) {
-      const liArma = document.createElement("li");
-      liArma.classList.add("arma");
-      liArma.textContent = `Arma: ${personaje.arma}`
-      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liArma);
-      const liDestreza = document.createElement("li");
-      liDestreza.classList.add("destreza");
-      liDestreza.textContent = `Destreza: ${personaje.destreza}`;
-      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liDestreza);
-      personajeDummy.querySelector(".emoji").textContent = `🗡`;
-    }
+      if (personaje instanceof Luchador) {
+        const liArma = document.createElement("li");
+        liArma.classList.add("arma");
+        liArma.textContent = `Arma: ${personaje.arma}`
+        personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liArma);
+        const liDestreza = document.createElement("li");
+        liDestreza.classList.add("destreza");
+        liDestreza.textContent = `Destreza: ${personaje.destreza}`;
+        personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liDestreza);
+        personajeDummy.querySelector(".emoji").textContent = `🗡`;
+      }
 
-    if (personaje instanceof Escudero) {
-      const liPeloteo = document.createElement("li");
-      liPeloteo.textContent = `Peloteo: ${personaje.pelotismo}`;
-      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liPeloteo);
-      const liSirveA = document.createElement("li");
-      liSirveA.textContent = `Sirve a: ${personaje.personajeQueSirve.nombre}`;
-      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liSirveA);
+      if (personaje instanceof Escudero) {
+        const liPeloteo = document.createElement("li");
+        liPeloteo.textContent = `Peloteo: ${personaje.pelotismo}`;
+        personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liPeloteo);
+        const liSirveA = document.createElement("li");
+        liSirveA.textContent = `Sirve a: ${personaje.personajeQueSirve.nombre}`;
+        personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liSirveA);
 
-      personajeDummy.querySelector(".emoji").textContent = `🛡`;
-    }
-    if (personaje instanceof Asesor) {
-      const liAsesoraA = document.createElement("li");
-      liAsesoraA.textContent = `Asesora a: ${personaje.personajeAsesorado.nombre}`;
-      personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liAsesoraA);
-      personajeDummy.querySelector(".emoji").textContent = `🎓`;
-    }
+        personajeDummy.querySelector(".emoji").textContent = `🛡`;
+      }
+      if (personaje instanceof Asesor) {
+        const liAsesoraA = document.createElement("li");
+        liAsesoraA.textContent = `Asesora a: ${personaje.personajeAsesorado.nombre}`;
+        personajeDummy.querySelector(".personaje-overlay").querySelector(".metadata").append(liAsesoraA);
+        personajeDummy.querySelector(".emoji").textContent = `🎓`;
+      }
 
-    document.querySelector(".personajes").append(personajeDummy);
+      document.querySelector(".personajes").append(personajeDummy)
+    }, 1000 * (listaDePersonajes.findIndex((personajeEncontrar) => personajeEncontrar === personaje) + 1));
   }
 }
 
