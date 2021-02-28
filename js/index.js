@@ -230,3 +230,38 @@ const recorrePersonajes = (listaDePersonajes) => {
 }
 
 recorrePersonajes(listaPersonajes);
+
+document.body.addEventListener("click", button => {
+  if (button.target.classList.contains("morir")) {
+    for (const personaje of listaPersonajes) {
+      const nombre = `${personaje.nombre} ${personaje.familia}`;
+      if (button.target.closest(".card-body").childNodes[1].innerText === nombre) {
+        personaje.morir();
+      }
+    }
+    const quitar = document.querySelectorAll(".eliminar");
+    for (const eliminar of quitar) {
+      document.querySelector(".personajes").removeChild(eliminar);
+    }
+    recorrePersonajes();
+  }
+});
+
+
+document.body.addEventListener("click", button => {
+  if (button.target.classList.contains("hablar")) {
+    for (const personaje of listaPersonajes) {
+      const nombre = `${personaje.nombre} ${personaje.familia}`;
+      if (button.target.closest(".card-body").childNodes[1].innerText === nombre ||
+        button.target.closest(".card-body").childNodes[1].innerText === personaje.nombre) {
+        button.target.closest(".container").nextElementSibling.childNodes[1].innerText = personaje.comunicar();
+        button.target.closest(".container").nextElementSibling.classList.add("on");
+        setTimeout(() => {
+          button.target.closest(".container").nextElementSibling.classList.remove("on");
+        }, 2000);
+      }
+    }
+  }
+})
+
+
