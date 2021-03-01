@@ -241,7 +241,6 @@ document.body.addEventListener("click", button => {
       const nombre = `${personaje.nombre} ${personaje.familia}`;
       if (button.target.closest(".card-body").childNodes[1].innerText === nombre) {
         personaje.morir();
-        console.log(personaje);
       }
     }
     const elementosEliminar = document.querySelectorAll(".eliminar");
