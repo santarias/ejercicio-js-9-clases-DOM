@@ -166,6 +166,7 @@ console.log(resumenL);
 
 
 const recorrePersonajes = (listaDePersonajes) => {
+  console.log(listaDePersonajes);
   for (const personaje of listaDePersonajes) {
     setTimeout(() => {
       const personajeDummy = document.querySelector(".personaje-dummy").cloneNode(true);
@@ -176,6 +177,7 @@ const recorrePersonajes = (listaDePersonajes) => {
       personajeDummy.querySelector(".estado").appendChild(iconoEstado);
       personajeDummy.querySelector(".edad").textContent = `Edad: ${personaje.edad}`;
       personajeDummy.querySelector(".estado").appendChild(iconoEstado);
+      personajeDummy.classList.add("eliminar");
       const imgPersonaje = personajeDummy.querySelector("img");
       imgPersonaje.src = `img/${personaje.nombre.toLowerCase()}.jpg`;
       imgPersonaje.alt = `${personaje.nombre} ${personaje.familia}`;
@@ -224,6 +226,7 @@ const recorrePersonajes = (listaDePersonajes) => {
         personajeDummy.querySelector(".emoji").textContent = `🎓`;
       }
 
+
       document.querySelector(".personajes").append(personajeDummy)
     }, 1000 * (listaDePersonajes.findIndex((personajeEncontrar) => personajeEncontrar === personaje) + 1));
   }
@@ -232,18 +235,20 @@ const recorrePersonajes = (listaDePersonajes) => {
 recorrePersonajes(listaPersonajes);
 
 document.body.addEventListener("click", button => {
-  if (button.target.classList.contains("morir")) {
+
+  if (button.target.classList.contains("muere")) {
     for (const personaje of listaPersonajes) {
       const nombre = `${personaje.nombre} ${personaje.familia}`;
       if (button.target.closest(".card-body").childNodes[1].innerText === nombre) {
         personaje.morir();
+        console.log(personaje);
       }
     }
-    const quitar = document.querySelectorAll(".eliminar");
-    for (const eliminar of quitar) {
+    const elementosEliminar = document.querySelectorAll(".eliminar");
+    for (const eliminar of elementosEliminar) {
       document.querySelector(".personajes").removeChild(eliminar);
     }
-    recorrePersonajes();
+    recorrePersonajes(listaPersonajes);
   }
 });
 
