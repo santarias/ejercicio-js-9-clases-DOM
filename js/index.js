@@ -253,15 +253,18 @@ document.body.addEventListener("click", button => {
 
 
 document.body.addEventListener("click", button => {
-  if (button.target.classList.contains("hablar")) {
+  if (button.target.classList.contains("habla")) {
     for (const personaje of listaPersonajes) {
       const nombre = `${personaje.nombre} ${personaje.familia}`;
       if (button.target.closest(".card-body").childNodes[1].innerText === nombre ||
         button.target.closest(".card-body").childNodes[1].innerText === personaje.nombre) {
-        button.target.closest(".container").nextElementSibling.childNodes[1].innerText = personaje.comunicar();
-        button.target.closest(".container").nextElementSibling.classList.add("on");
+        const hablar = document.querySelector(".comunicaciones")
+        hablar.querySelector("p").textContent = personaje.comunicar();
+        hablar.querySelector("img").src = `img/${personaje.nombre.toLowerCase()}.jpg`;
+        hablar.classList.add("on");
+
         setTimeout(() => {
-          button.target.closest(".container").nextElementSibling.classList.remove("on");
+          hablar.classList.remove("on");
         }, 2000);
       }
     }
